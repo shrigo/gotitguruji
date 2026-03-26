@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap');
 
 /* ═══════════════════════════════════════════════════
    DESIGN SYSTEM — GotItGuruji
@@ -28,6 +28,7 @@
   /* Typography */
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --font-brand: 'Playfair Display', serif;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -111,14 +112,16 @@ body {
 }
 
 .navbar-brand {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-family: var(--font-brand);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #E8DCC8;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .navbar-brand span {
-  color: var(--accent-teal);
+  color: #E8DCC8;
 }
 
 .navbar-tagline {

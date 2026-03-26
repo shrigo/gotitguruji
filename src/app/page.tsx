@@ -136,7 +136,6 @@ export default function Home() {
           <span className="navbar-brand">Got It <span>GURUJI</span></span>
         </a>
         <div className="navbar-right">
-          <span className="navbar-tagline">LEARNING | GUIDANCE | GROWTH</span>
           <SignInButton />
         </div>
       </nav>
