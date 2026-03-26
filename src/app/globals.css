@@ -224,18 +224,18 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: linear-gradient(135deg, var(--accent-teal), var(--accent-green));
-  color: #ffffff;
-  border: none;
+  background: var(--bg-primary);
+  color: #2dd4bf;
+  border: 2px solid var(--accent-teal);
   border-radius: var(--radius-full);
   padding: 10px 20px;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 800;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
 }
 
 .ask-btn:hover {
