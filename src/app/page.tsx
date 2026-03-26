@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect, FormEvent } from 'react';
-import { useSession } from 'next-auth/react';
 import SignInButton from '@/components/SignInButton';
 
 interface Message {
@@ -62,7 +61,6 @@ function renderMarkdown(text: string): string {
 }
 
 export default function Home() {
-  const { data: session, status } = useSession();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -71,14 +69,13 @@ export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const isChatActive = messages.length > 0;
-  const isAuthenticated = !!session?.user;
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   async function handleAsk(question: string) {
-    if (!question.trim() || isLoading || !isAuthenticated) return;
+    if (!question.trim() || isLoading) return;
 
     const userMsg: Message = { role: 'user', content: question.trim() };
     setMessages((prev) => [...prev, userMsg]);
@@ -155,34 +152,22 @@ export default function Home() {
           </>
         )}
 
-        {/* Ask Bar */}
+        {/* Ask Bar — available to everyone */}
         <div className="ask-container">
-          {isAuthenticated ? (
-            <form className="ask-bar" onSubmit={handleSubmit}>
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder="Ask Guruji anything..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                disabled={isLoading}
-                autoFocus
-              />
-              <button type="submit" className="ask-btn" disabled={isLoading || !input.trim()}>
-                {isLoading ? '...' : '🙏 Ask'}
-              </button>
-            </form>
-          ) : (
-            <div className="sign-in-prompt">
-              <div className="sign-in-prompt-icon">🔐</div>
-              <p className="sign-in-prompt-text">
-                {status === 'loading' ? 'Loading...' : 'Sign in with Google to start asking Guruji'}
-              </p>
-              {status !== 'loading' && (
-                <SignInButton />
-              )}
-            </div>
-          )}
+          <form className="ask-bar" onSubmit={handleSubmit}>
+            <input
+              ref={inputRef}
+              type="text"
+              placeholder="Ask Guruji anything..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              disabled={isLoading}
+              autoFocus
+            />
+            <button type="submit" className="ask-btn" disabled={isLoading || !input.trim()}>
+              {isLoading ? '...' : '🙏 Ask'}
+            </button>
+          </form>
           {remaining !== null && remaining <= 3 && (
             <p style={{ textAlign: 'center', color: 'var(--accent-gold)', fontSize: '0.8rem', marginTop: '8px' }}>
               {remaining} questions remaining today
@@ -191,7 +176,7 @@ export default function Home() {
         </div>
 
         {/* Suggestions */}
-        {!isChatActive && isAuthenticated && (
+        {!isChatActive && (
           <div className="suggestions">
             {SUGGESTIONS.map((s, i) => (
               <button
