@@ -141,9 +141,7 @@ export default function Home() {
       <main className={`hero ${isChatActive ? 'chat-active' : ''}`}>
         {!isChatActive && (
           <>
-            <img src="/logo.png" alt="Got It Guruji" style={{ height: '120px', marginBottom: 'var(--space-lg)', borderRadius: '12px' }} />
-            <h1 className="hero-title">Got It Guruji</h1>
-            <p className="hero-subtitle">Learning | Guidance | Growth</p>
+            <img src="/logo-full.png" alt="Got It Guruji — Learning | Guidance | Growth" style={{ height: '280px', marginBottom: 'var(--space-lg)', borderRadius: '16px' }} />
             <p className="hero-description">
               Ask Guruji anything — get clear, wise, and well-researched answers powered by AI and real-time web search.
             </p>
