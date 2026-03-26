@@ -12,7 +12,7 @@ const SUGGESTIONS = [
   { icon: '🧠', text: 'Explain Quantum Computing in simple terms' },
   { icon: '📈', text: 'Best investing strategies for beginners' },
   { icon: '🍛', text: 'How to make authentic Hyderabadi biryani' },
-  { icon: '🔐', text: 'What is blockchain and how does it work?' },
+  { icon: '📝', text: 'How to prepare for the SAT exam effectively?' },
 ];
 
 // Simple markdown renderer
