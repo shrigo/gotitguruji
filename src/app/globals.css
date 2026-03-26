@@ -111,6 +111,12 @@ body {
   width: auto;
 }
 
+.navbar-brand-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
 .navbar-brand {
   font-family: var(--font-brand);
   font-size: 1.4rem;
@@ -497,6 +503,56 @@ body {
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
+}
+
+/* ═══ PILLARS SECTION ═══ */
+.pillars-section {
+  padding: var(--space-3xl) var(--space-xl) var(--space-2xl);
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.pillar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.pillar-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(45, 212, 191, 0.1);
+}
+
+.pillar-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.pillar-title {
+  font-family: var(--font-brand);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.5px;
+}
+
+.pillar-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
 }
 
 /* ═══ FOOTER ═══ */
