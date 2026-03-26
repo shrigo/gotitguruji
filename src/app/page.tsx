@@ -195,7 +195,7 @@ export default function Home() {
           {messages.map((msg, i) => (
             <div key={i} className={`chat-message ${msg.role === 'user' ? 'user-message' : 'guruji-message'}`}>
               {msg.role === 'guruji' && (
-                <div className="guruji-avatar">🌳</div>
+                <div className="guruji-avatar"><img src="/logo.png" alt="Guruji" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} /></div>
               )}
               <div className="message-bubble">
                 {msg.role === 'guruji' ? (
@@ -218,7 +218,7 @@ export default function Home() {
           ))}
           {isLoading && (
             <div className="chat-message guruji-message">
-              <div className="guruji-avatar">🌳</div>
+              <div className="guruji-avatar"><img src="/logo.png" alt="Guruji" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} /></div>
               <div className="message-bubble">
                 <div className="loading-dots">
                   <span></span>

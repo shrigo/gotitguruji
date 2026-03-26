@@ -225,7 +225,7 @@ body {
   justify-content: center;
   gap: 6px;
   background: var(--bg-primary);
-  color: #FFEB3B;
+  color: #2dd4bf;
   border: 2px solid var(--accent-teal);
   border-radius: var(--radius-full);
   padding: 10px 20px;
