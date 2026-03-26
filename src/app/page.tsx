@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect, FormEvent } from 'react';
+import { useSession } from 'next-auth/react';
+import SignInButton from '@/components/SignInButton';
 
 interface Message {
   role: 'user' | 'guruji';
@@ -41,7 +43,7 @@ function renderMarkdown(text: string): string {
     .replace(/\n/g, '<br>');
 
   // Wrap consecutive <li> items in <ul>
-  html = html.replace(/(<li>.*?<\/li>)(\s*<br>\s*)?(<li>)/g, '$1$3');
+  html = html.replace(/(<li>.*?<\/li>)(\s*<br>\s*)(<li>)/g, '$1$3');
   html = html.replace(/(?<!<\/ul>|<\/ol>)(<li>)/g, '<ul>$1');
   html = html.replace(/(<\/li>)(?![\s\S]*?<li>)/g, '$1</ul>');
 
@@ -60,6 +62,7 @@ function renderMarkdown(text: string): string {
 }
 
 export default function Home() {
+  const { data: session, status } = useSession();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -68,13 +71,14 @@ export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const isChatActive = messages.length > 0;
+  const isAuthenticated = !!session?.user;
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   async function handleAsk(question: string) {
-    if (!question.trim() || isLoading) return;
+    if (!question.trim() || isLoading || !isAuthenticated) return;
 
     const userMsg: Message = { role: 'user', content: question.trim() };
     setMessages((prev) => [...prev, userMsg]);
@@ -134,7 +138,10 @@ export default function Home() {
           <img src="/logo.png" alt="Got It Guruji" />
           <span className="navbar-brand">Got It <span>Guruji</span></span>
         </a>
-        <span className="navbar-tagline">LEARNING | GUIDANCE | GROWTH</span>
+        <div className="navbar-right">
+          <span className="navbar-tagline">LEARNING | GUIDANCE | GROWTH</span>
+          <SignInButton />
+        </div>
       </nav>
 
       {/* Hero / Landing */}
@@ -150,20 +157,32 @@ export default function Home() {
 
         {/* Ask Bar */}
         <div className="ask-container">
-          <form className="ask-bar" onSubmit={handleSubmit}>
-            <input
-              ref={inputRef}
-              type="text"
-              placeholder="Ask Guruji anything..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              disabled={isLoading}
-              autoFocus
-            />
-            <button type="submit" className="ask-btn" disabled={isLoading || !input.trim()}>
-              {isLoading ? '...' : '🙏 Ask'}
-            </button>
-          </form>
+          {isAuthenticated ? (
+            <form className="ask-bar" onSubmit={handleSubmit}>
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder="Ask Guruji anything..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                disabled={isLoading}
+                autoFocus
+              />
+              <button type="submit" className="ask-btn" disabled={isLoading || !input.trim()}>
+                {isLoading ? '...' : '🙏 Ask'}
+              </button>
+            </form>
+          ) : (
+            <div className="sign-in-prompt">
+              <div className="sign-in-prompt-icon">🔐</div>
+              <p className="sign-in-prompt-text">
+                {status === 'loading' ? 'Loading...' : 'Sign in with Google to start asking Guruji'}
+              </p>
+              {status !== 'loading' && (
+                <SignInButton />
+              )}
+            </div>
+          )}
           {remaining !== null && remaining <= 3 && (
             <p style={{ textAlign: 'center', color: 'var(--accent-gold)', fontSize: '0.8rem', marginTop: '8px' }}>
               {remaining} questions remaining today
@@ -172,7 +191,7 @@ export default function Home() {
         </div>
 
         {/* Suggestions */}
-        {!isChatActive && (
+        {!isChatActive && isAuthenticated && (
           <div className="suggestions">
             {SUGGESTIONS.map((s, i) => (
               <button

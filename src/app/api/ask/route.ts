@@ -3,11 +3,21 @@ import { GoogleGenAI } from '@google/genai';
 import { GURUJI_SYSTEM_PROMPT } from '@/lib/guruji-prompt';
 import { searchWeb, formatSearchContext } from '@/lib/search';
 import { checkRateLimit } from '@/lib/rate-limit';
+import { auth } from '@/auth';
 
 const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export async function POST(req: NextRequest) {
   try {
+    // Check authentication
+    const session = await auth();
+    if (!session?.user?.email) {
+      return NextResponse.json(
+        { error: 'Please sign in to ask Guruji a question. 🙏' },
+        { status: 401 }
+      );
+    }
+
     const { question } = await req.json();
 
     if (!question || typeof question !== 'string' || question.trim().length === 0) {
@@ -18,9 +28,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Question is too long. Please keep it under 1000 characters.' }, { status: 400 });
     }
 
-    // Rate limiting
-    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
-    const rateCheck = checkRateLimit(ip);
+    // Rate limiting — now per user email instead of IP
+    const userKey = session.user.email;
+    const rateCheck = checkRateLimit(userKey);
     if (!rateCheck.allowed) {
       return NextResponse.json({
         error: 'You have reached your daily limit of 10 questions. Please come back tomorrow! 🙏',

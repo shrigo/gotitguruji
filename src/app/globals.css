@@ -522,6 +522,151 @@ body {
   margin: var(--space-md) 0;
 }
 
+/* ═══ NAVBAR RIGHT ═══ */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* ═══ AUTH STYLES ═══ */
+.sign-in-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.sign-in-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-teal);
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.2);
+  transform: translateY(-1px);
+}
+
+.google-icon {
+  flex-shrink: 0;
+}
+
+/* User Menu (signed in) */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--accent-teal);
+  object-fit: cover;
+}
+
+.user-avatar-fallback {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--accent-teal), var(--accent-gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--bg-primary);
+}
+
+.user-name {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.sign-out-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-tertiary);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sign-out-btn:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* Auth Skeleton */
+.auth-skeleton {
+  width: 120px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Sign-in Prompt (landing page, unauthenticated) */
+.sign-in-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-2xl);
+  backdrop-filter: blur(8px);
+  animation: fadeInUp 0.5s ease;
+}
+
+.sign-in-prompt-icon {
+  font-size: 2rem;
+}
+
+.sign-in-prompt-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.sign-in-prompt .sign-in-btn {
+  margin-top: var(--space-sm);
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  background: rgba(45, 212, 191, 0.08);
+  border-color: rgba(45, 212, 191, 0.3);
+}
+
+.sign-in-prompt .sign-in-btn:hover {
+  background: rgba(45, 212, 191, 0.15);
+}
+
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 768px) {
   .hero-title {
@@ -555,6 +700,18 @@ body {
 
   .navbar-brand {
     font-size: 1.1rem;
+  }
+
+  .navbar-tagline {
+    display: none;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .navbar-right {
+    gap: var(--space-sm);
   }
 }
 
