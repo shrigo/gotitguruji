@@ -131,6 +131,7 @@ export default function Home() {
       {/* Navbar */}
       <nav className="navbar">
         <a href="/" className="navbar-logo">
+          <img src="/logo.png" alt="Got It Guruji" />
           <span className="navbar-brand">Got It <span>Guruji</span></span>
         </a>
         <span className="navbar-tagline">LEARNING | GUIDANCE | GROWTH</span>
@@ -140,6 +141,7 @@ export default function Home() {
       <main className={`hero ${isChatActive ? 'chat-active' : ''}`}>
         {!isChatActive && (
           <>
+            <img src="/logo.png" alt="Got It Guruji" style={{ height: '120px', marginBottom: 'var(--space-lg)', borderRadius: '12px' }} />
             <h1 className="hero-title">Got It Guruji</h1>
             <p className="hero-subtitle">Learning | Guidance | Growth</p>
             <p className="hero-description">
