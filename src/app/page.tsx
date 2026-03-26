@@ -133,7 +133,7 @@ export default function Home() {
       <nav className="navbar">
         <a href="/" className="navbar-logo">
           <img src="/logo.png" alt="Got It Guruji" />
-          <span className="navbar-brand">Got It <span>Guruji</span></span>
+          <span className="navbar-brand">Got It <span>GURUJI</span></span>
         </a>
         <div className="navbar-right">
           <span className="navbar-tagline">LEARNING | GUIDANCE | GROWTH</span>
