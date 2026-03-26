@@ -504,54 +504,33 @@ body {
   margin: 0 auto;
 }
 
-/* ═══ PILLARS SECTION ═══ */
-.pillars-section {
-  padding: var(--space-3xl) var(--space-xl) var(--space-2xl);
-  max-width: 1000px;
-  margin: 0 auto;
-  width: 100%;
+/* ═══ PILLARS STRIP ═══ */
+.pillars-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-xl) var(--space-md) var(--space-sm);
+  animation: fadeInUp 0.6s ease 0.2s both;
 }
 
-.pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
-}
-
-.pillar-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: var(--space-xl) var(--space-lg);
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.pillar-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-glow);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(45, 212, 191, 0.1);
-}
-
-.pillar-icon {
-  font-size: 2.5rem;
-  margin-bottom: var(--space-md);
-}
-
-.pillar-title {
-  font-family: var(--font-brand);
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--accent-gold);
-  margin-bottom: var(--space-sm);
+.pillar-pill {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
   letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 }
 
-.pillar-description {
+.pillar-pill:hover {
+  color: var(--accent-gold);
+}
+
+.pillar-divider {
+  color: var(--text-tertiary);
+  opacity: 0.4;
   font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
 }
 
 /* ═══ FOOTER ═══ */

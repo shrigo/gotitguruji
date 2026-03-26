@@ -254,33 +254,15 @@ export default function Home() {
         </div>
       )}
 
-      {/* Pillars Section */}
+      {/* Pillars Strip */}
       {!isChatActive && (
-        <section className="pillars-section">
-          <div className="pillars-grid">
-            <div className="pillar-card">
-              <div className="pillar-icon">📚</div>
-              <h3 className="pillar-title">Learning</h3>
-              <p className="pillar-description">
-                Explore any topic with AI-powered depth. From science to spirituality, technology to traditions — Guruji breaks down complex concepts into clear, digestible wisdom backed by real-time web research.
-              </p>
-            </div>
-            <div className="pillar-card">
-              <div className="pillar-icon">🧭</div>
-              <h3 className="pillar-title">Guidance</h3>
-              <p className="pillar-description">
-                Get thoughtful, personalized advice for life&apos;s questions. Whether it&apos;s career decisions, study strategies, or daily challenges — Guruji provides wise counsel with practical, actionable steps.
-              </p>
-            </div>
-            <div className="pillar-card">
-              <div className="pillar-icon">🌱</div>
-              <h3 className="pillar-title">Growth</h3>
-              <p className="pillar-description">
-                Fuel your personal and professional development. Guruji helps you build skills, discover new perspectives, and continuously evolve — one question at a time, one insight at a time.
-              </p>
-            </div>
-          </div>
-        </section>
+        <div className="pillars-strip">
+          <span className="pillar-pill">📚 Learning</span>
+          <span className="pillar-divider">·</span>
+          <span className="pillar-pill">🧭 Guidance</span>
+          <span className="pillar-divider">·</span>
+          <span className="pillar-pill">🌱 Growth</span>
+        </div>
       )}
 
       {/* Footer */}
