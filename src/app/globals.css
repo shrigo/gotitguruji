@@ -225,7 +225,7 @@ body {
   justify-content: center;
   gap: 6px;
   background: linear-gradient(135deg, var(--accent-teal), var(--accent-green));
-  color: #ffffff;
+  color: #ffd700;
   border: none;
   border-radius: var(--radius-full);
   padding: 10px 20px;
