@@ -136,6 +136,13 @@ export default function Home() {
           <img src="/logo-text.jpg" alt="GOT IT GURUJI" className="navbar-brand-img" />
         </a>
         <div className="navbar-right">
+          <div className="navbar-pillars">
+            <span className="pillar-pill">📚 Learning</span>
+            <span className="pillar-divider">·</span>
+            <span className="pillar-pill">🧭 Guidance</span>
+            <span className="pillar-divider">·</span>
+            <span className="pillar-pill">🌱 Growth</span>
+          </div>
           <SignInButton />
         </div>
       </nav>
@@ -254,21 +261,12 @@ export default function Home() {
         </div>
       )}
 
-      {/* Pillars Strip */}
-      {!isChatActive && (
-        <div className="pillars-strip">
-          <span className="pillar-pill">📚 Learning</span>
-          <span className="pillar-divider">·</span>
-          <span className="pillar-pill">🧭 Guidance</span>
-          <span className="pillar-divider">·</span>
-          <span className="pillar-pill">🌱 Growth</span>
-        </div>
-      )}
+
 
       {/* Footer */}
       {!isChatActive && (
         <footer className="footer">
-          © 2026 Got It Guruji — Powered by AI with Wisdom 🙏
+          © 2026 Got It Guruji — A <a href="https://genageai.com" target="_blank" rel="noopener noreferrer">GenAge AI</a> Product 🙏
         </footer>
       )}
     </>
